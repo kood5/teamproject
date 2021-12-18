@@ -857,11 +857,11 @@
     [
       9, 
       8, 
-      "카페에 도착하였다.\n10년만에 만난 친구와 마스크를 벗고 5시간 동안 수다를 떨었다.", 
+      "마트에 도착하였다.\n가림막을 파는 것을 발견하였다.", 
       [0, 1, 1, 1], 
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "item", "item": 7, "percent": 90 },
+        { "type": "nothing", "percent": 10 }
       ]
     ],
     [
@@ -876,11 +876,11 @@
     [
       1, 
       9, 
-      "카페에 도착하였다.\n우연히 옆에서 커피를 마시던 아이가 델타 바이러스에 감염되었다.", 
+      "슈퍼에 도착하였다.\n아주머니가 마스크를 할인 판매하고 계셨다.", 
       [1, 1, 0, 1], 
       [
-        { "type": "battle", "monster": 5, "percent": 80 },
-        { "type": "nothing", "percent": 20 }
+        { "type": "item", "item": 9, "percent": 90 },
+        { "type": "nothing", "percent": 10 }
       ]
     ],
     [
@@ -944,8 +944,7 @@
       "병원에 도착하였다.\n백신을 맞기 위해 잠시 대기하였다.", 
       [1, 1, 0, 1], 
       [
-        { "type": "item", "item": 3, "percent": 90 },
-        { "type": "nothing", "percent": 10 }
+        { "type": "item", "item": 3, "percent": 100 }
       ]
     ],
     [
