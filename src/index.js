@@ -87,6 +87,7 @@ app.post("/action", authentication, async (req, res) => {
   let event = null;
   let field = null;
   let actions = [];
+  let validItem = [];
   if (action === "query") {
     field = mapManager.getField(req.player.x, req.player.y);
   } else if (action === "move") {
@@ -149,7 +150,7 @@ app.post("/action", authentication, async (req, res) => {
           player.y = 0;
           //랜덤으로 아이템 분실
           let items = await Item.find({player, isValid:true});
-          if (items) {
+          if (items.length > 0) {
             let deletedItem = items[Math.floor(Math.random() * items.length)]
             deletedItem.isValid = false;
             player.str -= itemManager.getItem(deletedItem.itemId).str;
@@ -195,6 +196,7 @@ app.post("/action", authentication, async (req, res) => {
     await player.save();
   }
   const EWSN = ['동', '서', '남', '북'];
+  field = mapManager.getField(req.player.x, req.player.y);
   field.canGo.forEach((direction, i) => {
     if (direction === 1) {
       actions.push({
@@ -205,7 +207,11 @@ app.post("/action", authentication, async (req, res) => {
     }
   });
 
-  return res.send({ player, field, event, actions });
+  const items = await Item.find({player, isValid: true});
+  for (const item of items) {
+    validItem.push(itemManager.getItem(item.itemId).name);
+  }
+  return res.send({ player, field, event, actions, validItem });
 });
 
 app.listen(3000);

@@ -10,6 +10,8 @@ const schema = new Schema({
   level: Number,
   exp: Number,
 
+  item: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
+
   maxHP: { type: Number, default: 10 },
   HP: { type: Number, default: 10 },
   str: { type: Number, default: 5 },
