@@ -19,6 +19,10 @@ mongoose.connect(
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
+const encryptPassword = (password) => {
+  return crypto.createHash("sha512").update(password).digest("base64");
+};
+
 const authentication = async (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) return res.sendStatus(401);
@@ -39,16 +43,20 @@ app.get("/game", (req, res) => {
   res.render("game");
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/signup",body("email").isEmail().isLength({max: 99}), body("name").isLength({min:2, max: 12}), body("password").isLength({min: 8, max: 16}), async (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    return res.status(400).json({errors: errors.array()});
+  }
   const { email, password, name } = req.body;
-
   if (await Player.exists({ email })) {
     return res.status(400).send({ error: "Player already exists" });
   }
+  const encryptedPassword = encryptPassword(password);
   const player = new Player({
-    email,
-    password,
-    name,
+    email: email,
+    password: encryptedPassword,
+    name: name,
     level: 1,
     exp: 0,
     maxHP: 100,
@@ -59,23 +67,21 @@ app.post("/signup", async (req, res) => {
     y: 0
   });
 
-  const key = crypto.randomBytes(24).toString("hex");
-  player.key = key;
-
   await player.save();
 
-  return res.send({ key });
+  return res.send({ player });
 });
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  //const encryptedPassword = encryptPassword(password);
-  const player = await Player.findOne({email, password});
+  const encryptedPassword = encryptPassword(password);
+  const player = await Player.findOne({email, password: encryptedPassword});
 
   if (player === null)
     return res.sendStatus(404);
 
-  const key = player.key;
+  const key = crypto.randomBytes(24).toString("hex");
+  player.key = key;
 
   return res.send({ key });
 })
