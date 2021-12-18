@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
+const { body, validationResult } = require("express-validator");
 
 const { constantManager, mapManager } = require("./datas/Manager");
 const { Player } = require("./models/Player");
@@ -13,7 +14,7 @@ app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 
 mongoose.connect(
-  "mongodb+srv://tester123:tester123@cluster0.ye4cg.mongodb.net/myFirstDatabase?",
+  "mongodb+srv://test0:test0@testmongo.nwu7w.mongodb.net/gameServer?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
@@ -38,13 +39,14 @@ app.get("/game", (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const { name } = req.body;
+  const { email, password, name } = req.body;
 
-  if (await Player.exists({ name })) {
+  if (await Player.exists({ email })) {
     return res.status(400).send({ error: "Player already exists" });
   }
-
   const player = new Player({
+    email,
+    password,
     name,
     maxHP: 10,
     HP: 10,

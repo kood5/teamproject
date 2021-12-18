@@ -9,29 +9,31 @@
     <div class=""></div>
 
     <form id="form" action="/signup">
-        이름: <input name="name"/>
+        email : <input name="email"/><br>
+        password : <input name="password"/><br>
+        이름: <input name="name"/><br>
         <input type="submit" value="확인"/>
     </form>
 
     <script>
 
-    const key = localStorage.getItem('_key');
-    if (key) {
-      location.href = '/game';
-    }
-     $('#form').submit(function(e) {
-       e.preventDefault();
-       const action = $(this).attr('action');
-       $.post(action, $(this).serialize(),(res) => {
-         if(res.key) {
-          localStorage.setItem('_key', res.key);
-          location.href = '/game';
-         }
-         else {
-          alert("에러가 발생했습니다. 다시 시도해주세요.");
-         }
-       });
-     });
+   const key = localStorage.getItem('_key');
+   if (key) {
+     location.href = '/game';
+   }
+    $('#form').submit(function(e) {
+      e.preventDefault();
+      const action = $(this).attr('action');
+      $.post(action, $(this).serialize(),(res) => {
+        if(res.key) {
+         localStorage.setItem('_key', res.key);
+         location.href = '/game';
+        }
+        else {
+         alert("에러가 발생했습니다. 다시 시도해주세요.");
+        }
+      });
+    });
     </script>
   </body>
 </html>
