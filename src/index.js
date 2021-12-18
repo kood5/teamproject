@@ -98,9 +98,9 @@ app.post("/action", authentication, async (req, res) => {
     } else if (direction === 1) {
       x -= 1;
     } else if (direction === 2) {
-      y -= 1;
-    } else if (direction === 3) {
       y += 1;
+    } else if (direction === 3) {
+      y -= 1;
     } else {
       res.sendStatus(400);
     }
@@ -143,13 +143,13 @@ app.post("/action", authentication, async (req, res) => {
         }
 
         player.incrementHP( playerDamaged );
-        player.incrementEXP(monster.exp);
+        player.incrementEXP(parseInt(monster.exp));
 
       } else if (_event.type === "item") {
         const item = itemManager.getItem(_event.item);
-        event = { description: `${item}을 획득했다` };
+        event = { description: `${item.name}을 획득했다` };
 
-        const playerItem = new Item({itemId : item.id, user });
+        const playerItem = new Item({itemId : item.id, player });
         playerItem.save();
 
         player.incrementSTR(item.str);
