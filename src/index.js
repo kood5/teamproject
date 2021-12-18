@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const crypto = require("crypto");
 const { body, validationResult } = require("express-validator");
 
-const { constantManager, mapManager, monsterManager } = require("./datas/Manager");
+const { constantManager, mapManager, monsterManager, itemManager } = require("./datas/Manager");
 const { Player } = require("./models/Player");
+const { Item } = require("./models/Item");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -142,12 +143,24 @@ app.post("/action", authentication, async (req, res) => {
         }
 
         player.incrementHP( playerDamaged );
+        player.incrementEXP(monster.exp);
 
       } else if (_event.type === "item") {
-        event = { description: "포션을 획득해 체력을 회복했다." };
-        player.incrementHP(1);
-        player.HP = Math.min(player.maxHP, player.HP + 1);
+        const item = itemManager.getItem(_event.item);
+        event = { description: `${item}을 획득했다` };
+
+        const playerItem = new Item({itemId : item.id, user });
+        playerItem.save();
+
+        player.incrementSTR(item.str);
+        player.incrementDEF(item.def);
+
+      } else if (_event.type = "heal"){
+
+      } else if (_event.type = "nothing"){
+
       }
+
     }
 
     await player.save();
