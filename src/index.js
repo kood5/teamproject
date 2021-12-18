@@ -51,8 +51,8 @@ app.post("/signup", async (req, res) => {
     name,
     level: 1,
     exp: 0,
-    maxHP: 10,
-    HP: 10,
+    maxHP: 100,
+    HP: 100,
     str: 5,
     def: 5,
     x: 0,
@@ -132,7 +132,7 @@ app.post("/action", authentication, async (req, res) => {
         if(player.str <= monster.def){
           attackCounts = monster.hp;
         }else{
-          attackCounts = monster.hp / (player.str - monster.def);
+          attackCounts = Math.ceil(monster.hp / (player.str - monster.def));
         }
 
         let playerDamaged;
@@ -143,13 +143,34 @@ app.post("/action", authentication, async (req, res) => {
         }
 
         player.incrementHP( playerDamaged );
+        //사망시 초기화
+        if (player.HP <= 0) {
+          player.HP = 100;
+          player.x = 0;
+          player.y = 0;
+          //랜덤으로 아이템 분실
+          let items = await Item.find({player, isValid:true});
+          if (items) {
+            let deletedItem = items[Math.floor(Math.random() * items.length)]
+            deletedItem.isValid = false;
+            player.str -= deletedItem.str;
+            player.def -= deletedItem.def;
+          }
+        }
         player.incrementEXP(parseInt(monster.exp));
+        // 경험치 100 도달시 레벨업
+        if (player.exp >= 100) {
+          player.level += 1;
+          player.str += 1;
+          player.def += 1;
+          player.exp -= 100;
+        }
 
       } else if (_event.type === "item") {
         const item = itemManager.getItem(_event.item);
         event = { description: `${item.name}을 획득했다` };
 
-        const playerItem = new Item({itemId : item.id, player });
+        const playerItem = new Item({itemId : item.id, player, isValid : true });
         playerItem.save();
 
         player.incrementSTR(item.str);
