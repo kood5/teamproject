@@ -10,7 +10,11 @@
 <div id="position"></div>
 
 <div id="status">
-    HP: <span id="HP"> 5 / 5</span>
+    HP: <span id="HP"> 5 / 5</span><br>
+    str: <span id="str"> 5 </span><br>
+    def: <span id="def"> 5 </span><br>
+    exp: <span id="exp"> 5 / 5</span><br>
+    level: <span id="level"> 5 </span><br>
 </div>
 <div id="game"></div>
 <div id="event_result"></div>
@@ -20,9 +24,15 @@
     <button value="2">남</button>
     <button value="3">북</button>
 </div>
+<!--<div id="inventory">-->
+
+<!--</div>-->
+
+
 
 <script>
-
+    // const { Item } = require("./models/Item");
+    // const { itemManager } = require("./datas/Manager");
     const sendAction = (url, params = {}) => {
         $.ajax({
             url,
@@ -35,7 +45,7 @@
             const { player, field, event, actions } = req;
 
             $('#game').text(field.description);
-            $('#position').text(`(${field.x},${field.y})`);
+            $('#position').text(`(${player.x},${player.y})`);
             const x = field.x;
             const y = field.y;
 
@@ -56,7 +66,23 @@
                 $('#event_result').text("아무일도 일어나지 않았다.");
             }
 
-            $('#HP').text(`${player.HP} / ${player.maxHP}`)
+            $('#HP').text(`${player.HP} / ${player.maxHP}`);
+            $('#str').text(`${player.str}`);
+            $('#def').text(`${player.def}`);
+            $('#exp').text(`${player.exp} / 100`);
+            $('#level').text(`${player.level}`);
+
+            // const items = Item.find({player, isValid: true});
+            // const itemName = [];
+            // for(const item of items){
+            //     itemName.push(itemManager.getItem(item.itemId));
+            // }
+            // for(int i=0; i<itemName.length; i++){
+            //
+            // }
+            // $('#inventory').text()
+
+
         });
 
     }

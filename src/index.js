@@ -125,7 +125,6 @@ app.post("/action", authentication, async (req, res) => {
       if (_event.type === "battle") {
         // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
         const monster = monsterManager.getMonster(_event.monster)
-        event = { description: `${monster.name}가 나타났다` };
         // 플레이어의 공격력에서 몬스터의 방어력 뺀만큼 몬스터에게 피해 입힘
 
         let attackCounts;
@@ -153,22 +152,29 @@ app.post("/action", authentication, async (req, res) => {
           if (items) {
             let deletedItem = items[Math.floor(Math.random() * items.length)]
             deletedItem.isValid = false;
-            player.str -= deletedItem.str;
-            player.def -= deletedItem.def;
+            player.str -= itemManager.getItem(deletedItem.itemId).str;
+            player.def -= itemManager.getItem(deletedItem.itemId).def;
+            event = { description: `${monster.name}가 나타났다.\n사망하여 ${itemManager.getItem(deletedItem.itemId).name}을 잃어버렸다.\n0,0으로 돌아간다.` };
+          } else{
+            event = { description: `${monster.name}가 나타났다.\n사망하여 0,0으로 돌아간다.` };
           }
-        }
-        player.incrementEXP(parseInt(monster.exp));
-        // 경험치 100 도달시 레벨업
-        if (player.exp >= 100) {
-          player.level += 1;
-          player.str += 1;
-          player.def += 1;
-          player.exp -= 100;
+        }else {
+          player.incrementEXP(parseInt(monster.exp));
+          // 경험치 100 도달시 레벨업
+          if (player.exp >= 100) {
+            player.level += 1;
+            player.str += 1;
+            player.def += 1;
+            player.exp -= 100;
+            event = { description: `${monster.name}가 나타났다.\n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.\n레벨업했다.`};
+          } else{
+            event = { description: `${monster.name}가 나타났다.\n 전투에서 승해해 경험치를 ${monster.exp}만큼 얻었다.` };
+          }
         }
 
       } else if (_event.type === "item") {
         const item = itemManager.getItem(_event.item);
-        event = { description: `${item.name}을 획득했다` };
+
 
         const playerItem = new Item({itemId : item.id, player, isValid : true });
         playerItem.save();
@@ -176,10 +182,12 @@ app.post("/action", authentication, async (req, res) => {
         player.incrementSTR(item.str);
         player.incrementDEF(item.def);
 
+        event = { description: `${item.name}을 획득했다\n str이${item.str}, def가${item.def}만큼 증가했다.` };
       } else if (_event.type = "heal"){
-
+        event = { description: `HP를 10만큼 회복했다.` };
+        player.incrementHP(10);
       } else if (_event.type = "nothing"){
-
+        event = { description: `아무일도 일어나지 않았다.` };
       }
 
     }
