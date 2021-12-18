@@ -14,8 +14,8 @@ app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 
 mongoose.connect(
-  "mongodb+srv://test0:test0@testmongo.nwu7w.mongodb.net/gameServer?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true }
+    "mongodb+srv://test0:test0@testmongo.nwu7w.mongodb.net/gameServer?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 const authentication = async (req, res, next) => {
@@ -48,6 +48,8 @@ app.post("/signup", async (req, res) => {
     email,
     password,
     name,
+    level: 1,
+    exp: 0,
     maxHP: 10,
     HP: 10,
     str: 5,
@@ -64,6 +66,20 @@ app.post("/signup", async (req, res) => {
   return res.send({ key });
 });
 
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  //const encryptedPassword = encryptPassword(password);
+  const player = await Player.findOne({email, password});
+
+  if (player === null)
+    return res.sendStatus(404);
+
+  const key = player.key;
+
+  return res.send({ key });
+})
+
+
 app.post("/action", authentication, async (req, res) => {
   const { action } = req.body;
   const player = req.player;
@@ -77,13 +93,13 @@ app.post("/action", authentication, async (req, res) => {
     let x = req.player.x;
     let y = req.player.y;
     if (direction === 0) {
-      y -= 1;
-    } else if (direction === 1) {
       x += 1;
-    } else if (direction === 2) {
-      y += 1;
-    } else if (direction === 3) {
+    } else if (direction === 1) {
       x -= 1;
+    } else if (direction === 2) {
+      y -= 1;
+    } else if (direction === 3) {
+      y += 1;
     } else {
       res.sendStatus(400);
     }
@@ -96,7 +112,15 @@ app.post("/action", authentication, async (req, res) => {
     const actions = [];
     if (events.length > 0) {
       // TODO : 확률별로 이벤트 발생하도록 변경
-      const _event = events[0];
+      const eventPercent = Math.random()*100;
+      //console.log(eventPercent);
+      //console.log(events[0].percent);
+
+      let _event = events[0];
+      if(events[0].percent < eventPercent) {
+        _event = events[1];
+      }
+
       if (_event.type === "battle") {
         // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
 
@@ -111,12 +135,12 @@ app.post("/action", authentication, async (req, res) => {
 
     await player.save();
   }
-
+  const EWSN = ['동', '서', '남', '북'];
   field.canGo.forEach((direction, i) => {
     if (direction === 1) {
       actions.push({
         url: "/action",
-        text: i,
+        text: EWSN[i],
         params: { direction: i, action: "move" }
       });
     }
