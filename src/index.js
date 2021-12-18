@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const crypto = require("crypto");
 const { body, validationResult } = require("express-validator");
 
-const { constantManager, mapManager } = require("./datas/Manager");
+const { constantManager, mapManager, monsterManager } = require("./datas/Manager");
 const { Player } = require("./models/Player");
 
 const app = express();
@@ -123,9 +123,26 @@ app.post("/action", authentication, async (req, res) => {
 
       if (_event.type === "battle") {
         // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+        const monster = monsterManager.getMonster(_event.monster)
+        event = { description: `${monster.name}가 나타났다` };
+        // 플레이어의 공격력에서 몬스터의 방어력 뺀만큼 몬스터에게 피해 입힘
 
-        event = { description: "늑대와 마주쳐 싸움을 벌였다." };
-        player.incrementHP(-1);
+        let attackCounts;
+        if(player.str <= monster.def){
+          attackCounts = monster.hp;
+        }else{
+          attackCounts = monster.hp / (player.str - monster.def);
+        }
+
+        let playerDamaged;
+        if(player.def >= monster.str){
+          playerDamaged = attackCounts*-1;
+        }else{
+          playerDamaged = attackCounts*(player.def - monster.str);
+        }
+
+        player.incrementHP( playerDamaged );
+
       } else if (_event.type === "item") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);
