@@ -66,10 +66,12 @@ app.post("/signup",body("email").isEmail().isLength({max: 99}), body("name").isL
     x: 0,
     y: 0
   });
+  const key = crypto.randomBytes(24).toString("hex");
+  player.key = key;
 
   await player.save();
 
-  return res.send({ player });
+  return res.send({ key });
 });
 
 app.post("/login", async (req, res) => {
@@ -79,9 +81,7 @@ app.post("/login", async (req, res) => {
 
   if (player === null)
     return res.sendStatus(404);
-
-  const key = crypto.randomBytes(24).toString("hex");
-  player.key = key;
+  const key = player.key
 
   return res.send({ key });
 })
