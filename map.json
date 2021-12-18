@@ -15,8 +15,8 @@
       "학교에 도착하였다.\n기말고사 시험으로 인해 많은 학생들이 모였다.",
       [1, 1, 1, 0],
       [
-        { "type": "battle", "monster": 3, "percent": 70},
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50},
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -44,8 +44,8 @@
       "학교에 도착하였다.\n중간고사 시험으로 인해 많은 학생들이 모였다.",
       [1, 1, 1, 0],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -82,8 +82,8 @@
       "다음 장소로 이동하기 위해 지하철에 탑승하였다.\n출근시간이라 그런지, 지하철 안은 사람들로 가득 찼다.",
       [1, 1, 1, 0],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -92,8 +92,8 @@
       "헬스장에 도착하였다.\n격한 운동으로 숨이 거칠어진 탓인지, 마스크를 제대로 착용하지 않고 운동을 하는 사람들도 몇몇 보인다.",
       [0, 1, 1, 0],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent":50 }
       ]
     ],
     [
@@ -121,8 +121,8 @@
       "다음 장소로 이동하기 위해 지하철에 탑승하였다.\n출근시간이라 그런지, 지하철 안은 사람들로 가득 찼다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
@@ -131,8 +131,8 @@
       "막힌 회의실에서 환기하지 않고 회사 전체 인원이 회의를 했다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -150,8 +150,8 @@
       "다음 장소로 이동하기 위해 지하철에 탑승하였다.\n출근시간이라 그런지, 지하철 안은 사람들로 가득 찼다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -197,8 +197,8 @@
       "영화관에 도착하였다.\n화제의 신작이 발표되어, 많은 사람들이 영화관을 찾은 모습이다.",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -207,8 +207,8 @@
       "다음 장소로 이동하기 위해 지하철에 탑승하였다.\n출근시간이라 그런지, 지하철 안은 사람들로 가득 찼다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -236,8 +236,8 @@
       "호텔에 도착하였다.\n크리스마스라 많은 사람들이 호텔로 휴가를 왔다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -246,8 +246,8 @@
       "헬스장에 도착하였다.\n격한 운동으로 숨이 거칠어진 탓인지, 마스크를 제대로 착용하지 않고 운동을 하는 사람들도 몇몇 보인다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
@@ -275,8 +275,8 @@
       "교회에 도착하였다.\n방역수칙에도 불구하고 정말 많은 사람들이 집회에 참석하였다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
@@ -295,8 +295,8 @@
       "다음 장소로 이동하기 위해 지하철에 탑승하였다.\n출근시간이라 그런지, 지하철 안은 사람들로 가득 찼다.",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -305,8 +305,8 @@
       "호텔에 도착하였다.\n크리스마스라 많은 사람들이 호텔로 휴가를 왔다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -324,8 +324,8 @@
       "클럽에 도착하였다.\n술에 취한 몇몇 사람들이 마스크를 벗은 채 소리를 지르는 모습이 보인다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
@@ -343,8 +343,8 @@
       "다음 장소로 이동하기 위해 지하철에 탑승하였다.\n출근시간이라 그런지, 지하철 안은 사람들로 가득 찼다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -372,8 +372,8 @@
       "영어학원에 도착하였다.\n밀폐된 좁은 공간에서 많은 학생들이 수업을 듣고 있다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -392,8 +392,8 @@
       "회사에 도착하였다.\n막힌 회의실에서 환기하지 않고 회사 전체 인원이 회의를 했다.",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -402,8 +402,8 @@
       "음식점에 도착하였다.\n많은 사람들이 마스크를 쓰지 않고 대화하고 있다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "nothing", "percent": 20 }
       ]
     ],
     [
@@ -412,8 +412,8 @@
       "클럽에 도착하였다.\n술에 취한 몇몇 사람들이 마스크를 벗은 채 소리를 지르는 모습이 보인다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
@@ -431,8 +431,8 @@
       "교회에 도착하였다.\n방역수칙에도 불구하고 정말 많은 사람들이 집회에 참석하였다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
@@ -441,8 +441,8 @@
       "회사에 도착하였다.\n막힌 회의실에서 환기하지 않고 회사 전체 인원이 회의를 했다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -469,8 +469,8 @@
       "호텔에 도착하였다.\n크리스마스라 많은 사람들이 호텔로 휴가를 왔다.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 3, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 3, "percent": 50 },
+        { "type": "nothing", "percent": 50 }
       ]
     ],
     [
@@ -479,8 +479,8 @@
       "목욕탕에 도착하였다.\n마스크를 착용하지 않은 사람들이 탕에 들어간다.",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 4, "percent": 70 },
-        { "type": "nothing", "percent": 30 }
+        { "type": "battle", "monster": 4, "percent": 40 },
+        { "type": "nothing", "percent": 60 }
       ]
     ],
     [
