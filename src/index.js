@@ -190,10 +190,10 @@ app.post("/action", authentication, async (req, res) => {
         player.incrementDEF(item.def);
 
         event = { description: `${item.name}을 획득했다\n str이${item.str}, def가${item.def}만큼 증가했다.` };
-      } else if (_event.type = "heal"){
+      } else if (_event.type === "heal"){
         event = { description: `HP를 10만큼 회복했다.` };
         player.incrementHP(10);
-      } else if (_event.type = "nothing"){
+      } else if (_event.type === "nothing"){
         event = { description: `아무일도 일어나지 않았다.` };
       }
 
