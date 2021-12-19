@@ -175,7 +175,7 @@ app.post("/action", authentication, async (req, res) => {
             player.exp -= 100;
             event = { description: `${monster.name}가 나타났다.\n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.\n레벨업했다.`};
           } else{
-            event = { description: `${monster.name}가 나타났다.\n 전투에서 승해해 경험치를 ${monster.exp}만큼 얻었다.` };
+            event = { description: `${monster.name}가 나타났다.\n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.` };
           }
         }
 
