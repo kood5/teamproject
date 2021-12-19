@@ -5,20 +5,21 @@
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
 <body>
-<%= gameName %>에 온 걸 환영합니다. 당신의 이름은?
+<%= gameName %>에 온 걸 환영합니다.<br><br>
+처음 플레이한다면 회원가입 해주세요.
 <div class=""></div>
 
 <form id="form" action="/signup">
-    email : <input name="email"/><br>
-    password : <input name="password"/><br>
-    이름: <input name="name"/><br>
+    이메일   : <input name="email"/><br>
+    비밀번호 : <input name="password"/>  * 비밀번호는 8자 이상, 16자 이하로 설정해주세요.<br>
+    이름    : <input name="name"/>  * 이름은 2자 이상, 12자 이하로 설정해주세요.<br>
     <input type="submit" value="확인"/>
 </form>
 
-로그인 하세요.
+기존 회원이라면 로그인 해 주세요.
 <form id="form2" action="/login">
-    email : <input name="email"/><br>
-    password : <input name="password"/><br>
+    이메일   : <input name="email"/><br>
+    비밀번호 : <input name="password"/><br>
     <input type="submit" value="확인"/>
 </form>
 <script>

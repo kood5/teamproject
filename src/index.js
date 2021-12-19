@@ -60,7 +60,7 @@ app.post(
       }
       const { email, password, name } = req.body;
       if (await Player.exists({ email })) {
-        return res.status(400).send({ error: "Player already exists" });
+        return res.status(400).json({ error: "Player already exists" });
       }
       const encryptedPassword = encryptPassword(password);
       const player = new Player({
@@ -128,8 +128,6 @@ app.post("/action", authentication, async (req, res) => {
     if (events.length > 0) {
       // TODO : 확률별로 이벤트 발생하도록 변경
       const eventPercent = Math.random() * 100;
-      //console.log(eventPercent);
-      //console.log(events[0].percent);
 
       let _event = events[0];
       if (events[0].percent < eventPercent) {
@@ -187,11 +185,13 @@ app.post("/action", authentication, async (req, res) => {
             player.def += 1;
             player.exp -= 100;
             event = {
-              description: `${monster.name}가 나타났다.\n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.\n레벨업했다.`
+              description: `${monster.name}가 나타났다. \n ${playerDamaged} 만큼 피해를 입었다. 
+              \n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.\n레벨이 1 상승하여 str 과 def 이 1만큼 높아졌다.`
             };
           } else {
             event = {
-              description: `${monster.name}가 나타났다.\n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.`
+              description: `${monster.name}가 나타났다.\n ${playerDamaged} 만큼 피해를 입었다. 
+              \n 전투에서 승리해 경험치를 ${monster.exp}만큼 얻었다.`
             };
           }
         }
@@ -205,7 +205,7 @@ app.post("/action", authentication, async (req, res) => {
         player.incrementDEF(item.def);
 
         event = {
-          description: `${item.name}을 획득했다\n str이${item.str}, def가${item.def}만큼 증가했다.`
+          description: `${item.name}을 획득했다\n str이${item.str}, def가${item.def}만큼 높아졌다.`
         };
       } else if (_event.type === "heal") {
         event = { description: `HP를 10만큼 회복했다.` };
