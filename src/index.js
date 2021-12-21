@@ -164,6 +164,8 @@ app.post("/action", authentication, async (req, res) => {
           if (items.length > 0) {
             let deletedItem = items[Math.floor(Math.random() * items.length)];
             deletedItem.isValid = false;
+            await deletedItem.save();
+
             player.str -= itemManager.getItem(deletedItem.itemId).str;
             player.def -= itemManager.getItem(deletedItem.itemId).def;
             event = {
